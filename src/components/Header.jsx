@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Cross } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X } from 'lucide-react';
 import './Header.css';
 
 const Header = () => {
@@ -7,39 +7,46 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+  const navLinks = [
+    { label: 'Nosotros', href: '#nosotros' },
+    { label: 'Horarios', href: '#horarios' },
+    { label: 'Eventos', href: '#eventos' },
+    { label: 'Campus', href: '#campus' },
+    { label: 'Contacto', href: '#contacto' },
+  ];
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container header-container">
-        <a href="#" className="logo">
-          <Cross className="logo-icon" size={28} />
+        <a href="#inicio" className="logo">
+          <div className="logo-cross">✝</div>
           <div className="logo-text">
-            <span className="logo-title">ICC</span>
-            <span className="logo-subtitle">Internacional</span>
+            <span className="logo-title">ICC Internacional</span>
+            <span className="logo-subtitle">Allende, Coah. · SGAR/5390/2025</span>
           </div>
         </a>
 
         <nav className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
           <ul>
-            <li><a href="#inicio" onClick={() => setMobileMenuOpen(false)}>Inicio</a></li>
-            <li><a href="#nosotros" onClick={() => setMobileMenuOpen(false)}>Nosotros</a></li>
-            <li><a href="#ministerios" onClick={() => setMobileMenuOpen(false)}>Ministerios</a></li>
-            <li><a href="#contacto" onClick={() => setMobileMenuOpen(false)}>Contacto</a></li>
+            {navLinks.map(link => (
+              <li key={link.label}>
+                <a href={link.href} onClick={() => setMobileMenuOpen(false)}>{link.label}</a>
+              </li>
+            ))}
           </ul>
         </nav>
 
-        <div className="mobile-toggle" onClick={toggleMenu}>
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        <a href="#contacto" className="header-cta btn btn-primary">
+          Primer Paso
+        </a>
+
+        <div className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
         </div>
       </div>
     </header>

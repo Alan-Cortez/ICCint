@@ -1,13 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --navy: #0a2540;
+  --bg-main: #050505; /* Black */
+  --bg-card: #111111; /* Very dark gray for cards */
+  --bg-card-hover: #161616;
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+  --accent-gold: #c5a880; /* Gold/Tan accent */
+  --accent-navy: #0a192f;
+  --border-color: #222222;
+
+  /* Aliases (compatibilidad con estilos existentes) */
+  --white: var(--text-main);
+  --black: var(--bg-main);
+  --navy: var(--accent-navy);
   --navy-light: #163c63;
-  --black: #111111;
-  --white: #ffffff;
-  --bg-light: #f8fafc;
-  --gray-text: #64748b;
-  --border-color: #e2e8f0;
+  --bg-light: #0c0c0c;
+  --gray-text: var(--text-muted);
 }
 
 * {
@@ -16,10 +25,14 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--white);
-  color: var(--black);
+  background-color: var(--bg-main);
+  color: var(--text-main);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -35,46 +48,54 @@ ul {
 
 /* Utilities */
 .container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
 .btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
+  border-radius: 50px; /* Pill shape */
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  gap: 0.5rem;
 }
 
 .btn-primary {
-  background-color: var(--navy);
-  color: var(--white);
+  background-color: var(--accent-gold);
+  color: #000000;
 }
 
 .btn-primary:hover {
-  background-color: var(--navy-light);
+  background-color: #d1b793;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(10, 37, 64, 0.2);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: var(--navy);
-  border: 2px solid var(--navy);
+  background-color: #1a1a1a;
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-  background-color: var(--navy);
-  color: var(--white);
+  background-color: #262626;
+  border-color: #333333;
 }
 
 .section {
-  padding: 5rem 0;
+  padding: 6rem 0;
 }
 
 .text-center {
@@ -84,14 +105,36 @@ ul {
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
-  line-height: 1.2;
-  color: var(--black);
+  line-height: 1.1;
+  color: var(--text-main);
 }
 
 h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: var(--navy);
+}
+
+.subtitle {
+  color: var(--text-muted);
+}
+
+/* Accesibilidad */
+:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+section[id] {
+  scroll-margin-top: 96px; /* header fijo */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .fade-in {
@@ -101,7 +144,7 @@ h2 {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;

@@ -2,17 +2,23 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import Schedule from './components/Schedule';
+import Events from './components/Events';
+import Campus from './components/Campus';
 import Forms from './components/Forms';
 import Footer from './components/Footer';
-import './App.css'; // Mantenemos por si hay estilos específicos
+import './index.css';
 
 function App() {
   return (
-    <div className="app-container">
+    <div>
       <Header />
       <main>
         <Hero />
         <About />
+        <Schedule />
+        <Events />
+        <Campus />
         <Forms />
       </main>
       <Footer />
