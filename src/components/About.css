@@ -1,0 +1,65 @@
+.about-section {
+  background-color: var(--bg-light);
+}
+
+.about-header {
+  margin-bottom: 4rem;
+}
+
+.about-header .subtitle {
+  color: var(--gray-text);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+}
+
+.about-card {
+  background-color: var(--white);
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border-color);
+}
+
+.about-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: transparent;
+}
+
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: rgba(10, 37, 64, 0.05);
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.about-card:hover .icon-wrapper {
+  background-color: var(--navy);
+  color: var(--white);
+  transform: scale(1.1);
+}
+
+.about-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-card p {
+  color: var(--gray-text);
+  font-size: 0.95rem;
+}
